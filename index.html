@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<!--
+  Rock-Paper-Scissors Game
+  A modern web-based rock-paper-scissor game with score tracking,
+  game over screen, local storage high scores, and smooth animations.
+  Built with HTML5, CSS3, and vanilla JavaScript.
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A modern rock-paper-scissors game with score tracking and animations">
+  <title>Rock Paper Scissors</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app">
+    <!-- Header Section -->
+    <header class="header">
+      <h1 class="game-title">✊ Rock Paper Scissors ✋</h1>
+      <p class="game-subtitle">Choose your move and beat the computer!</p>
+    </header>
+
+    <!-- Scoreboard Section -->
+    <section class="scoreboard" aria-label="Scoreboard">
+      <div class="score-card player-score">
+        <span class="score-label">You</span>
+        <span id="player-score" class="score-value">0</span>
+      </div>
+      <div class="score-divider">
+        <span class="vs-text">VS</span>
+        <span id="round-count" class="round-text">Round 0</span>
+      </div>
+      <div class="score-card computer-score">
+        <span class="score-label">Computer</span>
+        <span id="computer-score" class="score-value">0</span>
+      </div>
+    </section>
+
+    <!-- High Score Section -->
+    <section class="high-score-section" aria-label="High Score">
+      <span class="high-score-text">🏆 Best Score:</span>
+      <span id="high-score" class="high-score-value">0</span>
+    </section>
+
+    <!-- Game Area: Choices and Result Display -->
+    <section class="game-area" aria-label="Game Area">
+      <!-- Result Display -->
+      <div class="result-display">
+        <div class="choice-display" id="player-choice-display">
+          <span class="choice-icon">❔</span>
+          <span class="choice-label">Your Move</span>
+        </div>
+        <div class="result-message" id="result-message">
+          <span class="result-text">Pick a move to start!</span>
+        </div>
+        <div class="choice-display" id="computer-choice-display">
+          <span class="choice-icon">❔</span>
+          <span class="choice-label">Computer</span>
+        </div>
+      </div>
+
+      <!-- Game Feedback / Tie-breaker -->
+      <div id="game-feedback" class="game-feedback"></div>
+    </section>
+
+    <!-- Move Selection Buttons -->
+    <section class="moves-section" aria-label="Move Selection">
+      <h2 class="section-title">Choose your move</h2>
+      <div class="moves-container">
+        <button class="move-btn rock-btn" data-move="rock" aria-label="Rock">
+          <span class="move-emoji">✊</span>
+          <span class="move-name">Rock</span>
+        </button>
+        <button class="move-btn paper-btn" data-move="paper" aria-label="Paper">
+          <span class="move-emoji">✋</span>
+          <span class="move-name">Paper</span>
+        </button>
+        <button class="move-btn scissors-btn" data-move="scissors" aria-label="Scissors">
+          <span class="move-emoji">✌️</span>
+          <span class="move-name">Scissors</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Controls Section -->
+    <section class="controls" aria-label="Game Controls">
+      <button id="restart-btn" class="control-btn restart-btn" aria-label="Restart Game">
+        🔄 Restart Game
+      </button>
+      <button id="reset-highscore-btn" class="control-btn reset-highscore-btn" aria-label="Reset High Score">
+        🗑️ Reset High Score
+      </button>
+    </section>
+
+    <!-- Game Over Overlay -->
+    <div id="game-over-overlay" class="game-over-overlay hidden">
+      <div class="game-over-modal">
+        <h2 class="game-over-title">🎮 Game Over!</h2>
+        <p id="game-over-message" class="game-over-message"></p>
+        <div class="game-over-stats">
+          <p>Final Score: <span id="final-player-score">0</span> - <span id="final-computer-score">0</span></p>
+          <p>Rounds Played: <span id="final-rounds">0</span></p>
+        </div>
+        <button id="play-again-btn" class="control-btn play-again-btn">Play Again</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
