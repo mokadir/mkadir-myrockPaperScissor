@@ -177,24 +177,5 @@ EOF
                 }
             }
         }
-
-        stage('Deploy to Kubernetes') {
-            steps {
-                container('tools') {
-                    script {
-                        // Update namespace in all manifest files
-                        sh """
-                            sed -i 's|namespace: .*|namespace: ns-rockpaperscissor|g' k8s/*.yaml
-                            sed -i 's|image: .*|image: ${env.DOCKERHUB_ORG}/${env.APP_NAME}:${env.IMAGE_TAG}|g' k8s/deployment.yaml
-                        """
-                        // Apply manifests to cluster
-                        sh """
-                            kubectl apply -f k8s/ -n ns-rockpaperscissor
-                            kubectl rollout status deployment/rockpaperscissor-deployment -n ns-rockpaperscissor --timeout=120s
-                        """
-                    }
-                }
-            }
-        }
     }
 }
